@@ -1,0 +1,7 @@
+<div class="p-4 poll-result bg-white rounded-lg border shadow-lg">
+  <p class="text-primary-color text-2xl mb-4">Bem vindo a PayfyEnquetes!</p>
+
+  <p>
+    Veja <%= live_redirect "aqui", id: "link_poll_index", class: "underline", to: Routes.poll_index_path(@socket, :index) %> as enquetes presentes no site.
+  </p>
+</div>

@@ -1,0 +1,15 @@
+<ul>
+  <li class="flex-grow">
+    <%= live_redirect "PayfyEnquetes", class: "nav-link", to: Routes.poll_index_path(@conn, :index) %>
+  </li>
+  <%= if @current_user do %>
+    <li class="mr-4 font-bold italic">
+      <%= @current_user.first_name <> " " <> @current_user.last_name %>
+    </li>
+    <li><%= live_redirect "Nova enquete", class: "btn", to: Routes.poll_create_path(@conn, :create) %></li>
+    <li><%= link "Logout", class: "nav-link", to: Routes.user_session_path(@conn, :delete), method: :delete %></li>
+  <% else %>
+    <li><%= link "Login", class: "nav-link", to: Routes.user_session_path(@conn, :new) %></li>
+    <li><%= link "Register", class: "btn", to: Routes.user_registration_path(@conn, :new) %></li>
+  <% end %>
+</ul>

@@ -1,0 +1,15 @@
+<div class="">
+  <%= for poll <- @polls do %>
+    <div
+      id="poll-<%= poll.id %>"
+      phx-click="redirect_poll" phx-value-url-path="<%= poll.url_path %>"
+      class="poll shadow-lg cursor-pointer border bg-white rounded-lg p-4 my-4"
+    >
+      <div class="mb-4 flex justify-between">
+        <p class="text-primary-color text-4xl"><%= poll.title %></p>
+        <p class="font-thin italic text-right">por: <%= poll.user.email %></p>
+      </div>
+      <p class="mb-2 font-normal text-2xl"><%= poll.question %></p>
+    </div>
+  <% end %>
+</div>

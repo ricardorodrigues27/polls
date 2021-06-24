@@ -1,0 +1,38 @@
+<%= if @user_session_answered_poll? do %>
+  <div id="poll_card_results" class="p-4 poll-result bg-white rounded-lg border shadow-lg">
+    <p class="text-primary-color text-4xl text-center mb-8"><%= @poll.title %></p>
+
+    <p class="text-2xl font-thin mb-2"><%= @poll.question %></p>
+
+    <div id="poll_options_card_results" class="w-4/6">
+      <%= for poll_result <- @poll_results do %>
+        <div class="mb-2">
+          <div class="flex justify-between items-center relative py-1">
+            <div style="width: <%= Decimal.mult(poll_result.percent, 100) %>%"
+              class="bg-purple-500 bg-opacity-50 text-white p-2 rounded absolute h-full"></div>
+            <p class="text-base italic ml-2"><%= poll_result.name %></p>
+            <span class="italic mr-2"><%= poll_result.percent |> Decimal.mult(100) |> Decimal.round() %>%</span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <p id="poll_total_votes" class="text-primary-color text-right">Votos: <%= @total_votes %></p>
+  </div>
+<% else %>
+  <div id="poll_card_to_be_answered" class="p-4 poll-result bg-white rounded-lg border shadow-lg">
+    <p class="text-primary-color text-4xl text-center mb-8"><%= @poll.title %></p>
+
+    <p class="text-2xl font-thin mb-2"><%= @poll.question %></p>
+
+    <%= f = form_for :poll, "#", id: "form_poll_options", phx_submit: "save_poll_answer" %>
+      <%= for poll_option <- @poll.options do %>
+        <label class="block text-xl"><%= radio_button f, :answer, poll_option.id %> <%= poll_option.name %></label>
+      <% end %>
+      <%= submit "Responder", class: "mt-4 btn btn-inline" %>
+      <%= if @show_warning_poll? do %>
+        <p>Escolha uma das opções e clique em responder</p>
+      <% end %>
+    </form>
+  </div>
+<% end %>

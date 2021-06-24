@@ -1,0 +1,101 @@
+body {
+  @apply antialiased relative bg-cool-gray-200 font-sans;
+}
+
+.container {
+  @apply max-w-6xl mx-auto px-6;
+}
+
+h1 {
+  @apply text-center;
+  @apply font-bold text-4xl mb-8;
+}
+
+.icon {
+  fill: currentColor;
+}
+
+header {
+  /* @apply bg-orange-300; */
+
+  section {
+    @apply p-6;
+  }
+
+  nav {
+    ul {
+      @apply flex justify-between;
+
+      li {
+        @apply mx-0 text-lg text-cool-gray-700;
+      }
+    }
+  }
+}
+
+/* Auth */
+
+.auth {
+  @apply px-6 mt-8 mx-auto w-full max-w-md;
+
+  h3 {
+    @apply mt-6 mb-2 text-xl font-bold text-cool-gray-900;
+  }
+}
+
+form[action="/users/log_in"],
+form[action="/users/register"],
+form[action="/users/reset_password"],
+form[action="/users/confirm"],
+form[action="/users/settings"] {
+  @apply bg-white px-10 py-8 mb-2 shadow rounded-lg;
+
+  @apply px-6 mt-8 mx-auto w-full max-w-md;
+
+  label {
+    @apply block mb-2 text-sm font-medium text-cool-gray-700;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    @apply mb-4 appearance-none block w-full px-3 py-2 border border-cool-gray-300 rounded-md transition duration-150 ease-in-out text-sm;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="password"]:focus {
+    @apply outline-none ring ring-indigo-300 border-indigo-300;
+  }
+
+  .checkbox-field {
+    @apply flex items-center mb-2;
+
+    input[type="checkbox"] {
+      @apply m-0 h-4 w-4 text-cool-gray-700 transition duration-150 ease-in-out;
+    }
+
+    label {
+      @apply m-0 ml-2;
+    }
+  }
+
+  button {
+    @apply mt-2 w-full py-2 px-4;
+    @apply border border-transparent rounded;
+    @apply text-sm font-medium text-white;
+    @apply bg-indigo-600 transition duration-150 ease-in-out;
+  }
+  
+  button:focus {
+    @apply outline-none border-indigo-700 ring ring-indigo-300;
+  }
+  
+  button:active {
+    @apply bg-indigo-700;
+  }
+  
+  button:hover {
+    @apply bg-indigo-500;
+  }
+}

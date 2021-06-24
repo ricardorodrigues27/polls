@@ -1,0 +1,45 @@
+<div class="border bg-white rounded-lg shadow-lg p-4">
+  <p class="text-primary-color text-3xl mb-6 text-center">Cadastrar enquete</p>
+
+  <%= f = form_for @changeset, "#", class: "form", phx_change: "validate_poll", phx_submit: "save" %>
+    <%= hidden_input f, :url_path %>
+    <%= hidden_input f, :user_id, value: @current_user.id %>
+
+    <div class="form-row">
+      <%= label f, :title, "TÍTULO" %>
+      <%= text_input f, :title %>
+      <%= error_tag f, :title %>
+    </div>
+
+    <div class="form-row">
+      <%= label f, :url_path, "ENDEREÇO WEB" %>
+      <p>www.payfy-desafio.com/enquetes/<%= input_value(f, :url_path) %></p>
+      <%= error_tag f, :url_path %>
+    </div>
+
+    <div class="form-row">
+      <%= label f, :question, "PERGUNTA" %>
+      <%= text_input f, :question %>
+      <%= error_tag f, :question %>
+    </div>
+
+    <p class="text-primary-color font-bold">RESPOSTAS</p>
+    <%= error_tag f, :options %>
+
+    <%= inputs_for f, :options, fn fp -> %>
+      <div class="flex form-row">
+        <div class="flex-grow mr-2">
+          <%= text_input fp, :name %>
+          <%= error_tag fp, :name %>
+        </div>
+        <div>
+          <button class="btn btn-inline btn-sm" phx-click="remove_poll_option" type="button" phx-value-index="<%= fp.index %>">REMOVER</button>
+        </div>
+      </div>
+    <% end %>
+
+    <button class="btn btn-sm mb-4" phx-click="add_poll_option" type="button">ADICIONAR</button>
+
+    <%= submit "SALVAR", class: "mt-4 btn btn-inline" %>
+  </form>
+</div>
